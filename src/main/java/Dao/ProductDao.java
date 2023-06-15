@@ -63,7 +63,7 @@ public class ProductDao extends AbstractDao<Product>{
     @Override
     public void update(Product product, String[] params) {
         String SQL_UPDATE="Update product set product_id,=?,product_name=?,product_price=?, category_id=? where product_id=?";
-        try(PreparedStatement ps =this.executePrepareStatement(SQL_UPDATE)){
+        try (PreparedStatement ps =this.executePrepareStatement(SQL_UPDATE)){
             ps.setString(1, params[0]);
             ps.setString(2, params[1]);
             ps.setString(3, params[2]);
@@ -73,16 +73,4 @@ public class ProductDao extends AbstractDao<Product>{
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void delete(Product product) {
-        String SQL_DELETE="Delete from product where product_id=?";
-        try(PreparedStatement ps=this.executePrepareStatement(SQL_DELETE)){
-            ps.setLong(1,product.getProductId());
-            ps.executeUpdate();
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
 }
-

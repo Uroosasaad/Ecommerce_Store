@@ -29,7 +29,7 @@ public class CustomerDao extends AbstractDao<Customer>{
     public List<Customer> getAll() {
         List<Customer> customers = new ArrayList<>();
         String SQL_SELECT_ALL = "Select * from customers";
-        try(PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
+        try (PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 customers.add(new Customer(rs.getInt("customer_id"),rs.getString("first_name"),
@@ -46,7 +46,7 @@ public class CustomerDao extends AbstractDao<Customer>{
     @Override
     public void create(Customer customer) {
         String SQL_INSERT = "Insert into customers(customer_id,first_name,last_name,email,address_Id) values(?,?,?,?,?)";
-        try(PreparedStatement ps= this.executePrepareStatement(SQL_INSERT)) {
+        try (PreparedStatement ps= this.executePrepareStatement(SQL_INSERT)) {
             ps.setLong(1, customer.getCustomerId());
             ps.setString(2, customer.getFirstName());
             ps.setString(3, customer.getLastName());
@@ -61,7 +61,7 @@ public class CustomerDao extends AbstractDao<Customer>{
     @Override
     public void update(Customer customer, String[] params) {
         String SQL_UPDATE="Update customers set first_name=?,last_name=?,email=?, phone_number=? where customer_id=?";
-        try(PreparedStatement ps=this.executePrepareStatement(SQL_UPDATE)){
+        try (PreparedStatement ps=this.executePrepareStatement(SQL_UPDATE)){
             ps.setString(1, params[0]);
             ps.setString(2, params[1]);
             ps.setString(3, params[2]);
@@ -73,15 +73,5 @@ public class CustomerDao extends AbstractDao<Customer>{
         }
     }
 
-    @Override
-    public void delete(Customer customer) {
-        String SQL_DELETE="Delete from customers where customer_id=?";
-        try(PreparedStatement ps=this.executePrepareStatement(SQL_DELETE)){
-            ps.setLong(1, customer.getCustomerId());
-            ps.executeUpdate();
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-}
 
+}

@@ -76,15 +76,4 @@ public class PaymentDao extends AbstractDao<Payment> {
         }
     }
 
-    @Override
-    public void delete(Payment payment) {
-        String SQL_DELETE = "Delete from payment where payment_id=?";
-        try (PreparedStatement ps = this.executePrepareStatement(SQL_DELETE)) {
-            ps.setLong(1, payment.getPaymentId());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }
-

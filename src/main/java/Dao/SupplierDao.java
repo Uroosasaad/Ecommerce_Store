@@ -32,7 +32,7 @@ public class SupplierDao extends AbstractDao<Supplier>{
     public List<Supplier> getAll() {
         List<Supplier> suppliers = new ArrayList<>();
         String SQL_SELECT_ALL = "Select * from supplier";
-        try(PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
+        try (PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 suppliers.add(new Supplier(rs.getLong("supplier_id"),rs.getString("supplier_name")
@@ -50,7 +50,8 @@ public class SupplierDao extends AbstractDao<Supplier>{
     public void create(Supplier supplier) {
         String SQL_INSERT = "Insert into suppliers (supplier_id, supplier_name,) values(?,?)";
         try (PreparedStatement ps = this.executePrepareStatement(SQL_INSERT)) {
-
+            ps.setLong(1, supplier.getSupplierId());
+            ps.setString(2, supplier.getSupplierName());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,14 +70,4 @@ public class SupplierDao extends AbstractDao<Supplier>{
         }
     }
 
-    @Override
-    public void delete(Supplier supplier) {
-        String SQL_DELETE = "Delete from supplier where category_id=?";
-        try (PreparedStatement ps = this.executePrepareStatement(SQL_DELETE)) {
-            ps.setLong(1, supplier.getSupplierId());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

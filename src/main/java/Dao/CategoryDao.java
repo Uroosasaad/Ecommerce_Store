@@ -30,18 +30,11 @@ public class CategoryDao extends AbstractDao<Category> {
     public List<Category> getAll() {
         List<Category> categories = new ArrayList<>();
         String SQL_SELECT_ALL = "Select * from category";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-         try {
-            ps = this.executePrepareStatement(SQL_SELECT_ALL);
-            rs = ps.executeQuery();
-            while (rs.next()) {
+        try(PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
                 categories.add(new Category(rs.getLong("category_id"), rs.getString("category_name")));
             }
-            if (rs != null && !rs.isClosed())
-                rs.close();
-            if (ps != null && !ps.isClosed())
-                ps.getConnection().close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,16 +65,5 @@ public class CategoryDao extends AbstractDao<Category> {
         }
     }
 
-    @Override
-    public void delete(Category category) {
-        String SQL_DELETE = "Delete from category where category_id=?";
-        try (PreparedStatement ps = this.executePrepareStatement(SQL_DELETE)) {
-            ps.setLong(1, category.getCategoryId());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
-
-

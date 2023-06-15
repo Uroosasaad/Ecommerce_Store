@@ -1,8 +1,6 @@
 package Dao;
 
 import connection.DBCPDataSource;
-//import org.apache.commons.dbcp2.BasicDataSource;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,5 +47,3 @@ public abstract class AbstractDao<T> implements DAOInterface<T> {
     }
 
 }
-
-

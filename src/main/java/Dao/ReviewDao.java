@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewDao extends AbstractDao<Review>{
+public class ReviewDao extends AbstractDao<Review> implements DAODelete<Review> {
 
     @Override
     public Review getById(int id) {
@@ -32,7 +32,7 @@ public class ReviewDao extends AbstractDao<Review>{
     public List<Review> getAll() {
         List<Review> reviews = new ArrayList<>();
         String SQL_SELECT_ALL = "Select * from reviews";
-        try(PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
+        try (PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 reviews.add(new Review(rs.getLong("review_id"),rs.getLong("customer_id"),
@@ -64,7 +64,7 @@ public class ReviewDao extends AbstractDao<Review>{
     @Override
     public void update(Review review, String[] params) {
         String SQL_UPDATE="Update review set review_id,=?,customer_id=?,product_id=?, rating=?, comment=? where review_id=?";
-        try(PreparedStatement ps =this.executePrepareStatement(SQL_UPDATE)){
+        try (PreparedStatement ps =this.executePrepareStatement(SQL_UPDATE)){
             ps.setString(1, params[0]);
             ps.setString(2, params[1]);
             ps.setString(3, params[2]);
@@ -79,7 +79,7 @@ public class ReviewDao extends AbstractDao<Review>{
     @Override
     public void delete(Review review) {
         String SQL_DELETE="Delete from review where review_id=?";
-        try(PreparedStatement ps=this.executePrepareStatement(SQL_DELETE)){
+        try (PreparedStatement ps=this.executePrepareStatement(SQL_DELETE)){
             ps.setLong(1, review.getReviewId());
             ps.executeUpdate();
         } catch(SQLException e){

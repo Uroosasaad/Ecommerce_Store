@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddressDao extends AbstractDao<Address> {
+public class AddressDao extends AbstractDao<Address> implements DAODelete<Address> {
     @Override
     public Address getById(int id) {
         String SQL_SELECT = "Select * from address where address_id=?";
@@ -21,7 +21,6 @@ public class AddressDao extends AbstractDao<Address> {
                         rs.getString("last_name"), rs.getString("email"),
                         rs.getLong("addressId"));
             }
-            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -32,11 +31,10 @@ public class AddressDao extends AbstractDao<Address> {
     public List<Address> getAll() {
         List<Address> addresses = new ArrayList<>();
         String SQL_SELECT_ALL = "Select * from address";
-        PreparedStatement ps = null;
+
         ResultSet rs = null;
-        try {
-            ps = this.executePrepareStatement(SQL_SELECT_ALL);
-              rs = ps.executeQuery();
+        try (PreparedStatement ps = this.executePrepareStatement(SQL_SELECT_ALL))  {
+            rs = ps.executeQuery();
             while (rs.next()) {
                 addresses.add(new Address(rs.getInt("address_id"), rs.getString("street"),
                         rs.getString("city"), rs.getString("state"), rs.getLong("zip_code")
@@ -44,7 +42,6 @@ public class AddressDao extends AbstractDao<Address> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
         }
 
         return addresses;
@@ -60,7 +57,7 @@ public class AddressDao extends AbstractDao<Address> {
             ps.setString(4, address.getState());
             ps.setLong(5, address.getZipCode());
             ps.executeUpdate();
-            ps.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -92,5 +89,3 @@ public class AddressDao extends AbstractDao<Address> {
         }
     }
 }
-
-
