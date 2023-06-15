@@ -7,11 +7,11 @@ import Services.DeleteService;
 
 import java.util.List;
 
-public class ReviewCRUImpl implements CRUService<Review>, DeleteService<Review> {
+public class ReviewService implements CRUService<Review>, DeleteService<Review> {
 
     ReviewDao reviewDao = null;
 
-    public ReviewCRUImpl(ReviewDao reviewDao) {
+    public ReviewService(ReviewDao reviewDao) {
         this.reviewDao = reviewDao;
     }
 

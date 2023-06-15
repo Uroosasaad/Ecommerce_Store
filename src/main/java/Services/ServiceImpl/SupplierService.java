@@ -6,11 +6,11 @@ import Services.CRUService;
 
 import java.util.List;
 
-public class SupplierCRUImpl implements CRUService<Supplier> {
+public class SupplierService implements CRUService<Supplier> {
 
     SupplierDao supplierDao = null;
 
-    public SupplierCRUImpl(SupplierDao supplierDao) {
+    public SupplierService(SupplierDao supplierDao) {
         this.supplierDao = supplierDao;
     }
 

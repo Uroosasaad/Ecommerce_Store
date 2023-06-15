@@ -1,6 +1,5 @@
 package Services.ServiceImpl;
 
-import Dao.DAODelete;
 import Dao.ProductDao;
 import Entities.Product;
 import Services.CRUService;
@@ -8,11 +7,11 @@ import Services.DeleteService;
 
 import java.util.List;
 
-public class ProductCRUImpl implements CRUService<Product>, DeleteService<Product> {
+public class ProductService implements CRUService<Product>, DeleteService<Product> {
 
     ProductDao productDao = null;
 
-    public ProductCRUImpl(ProductDao productDao) {
+    public ProductService(ProductDao productDao) {
         this.productDao = productDao;
     }
 

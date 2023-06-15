@@ -1,0 +1,100 @@
+<Orders>
+
+    <Order>
+        <order_id>10</order_id>
+        <customer_id>1</customer_id>
+        <order_date>2023-03-01</order_date>
+        <total_amount>5</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>11</order_id>
+        <customer_id>2</customer_id>
+        <order_date>2022-04-06</order_date>
+        <total_amount>3</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>12</order_id>
+        <customer_id>3</customer_id>
+        <order_date>2019-02-01</order_date>
+        <total_amount>10</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>13</order_id>
+        <customer_id>4</customer_id>
+        <order_date>2018-02-01</order_date>
+        <total_amount>150</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>14</order_id>
+        <customer_id>5</customer_id>
+        <order_date>2022-02-01</order_date>
+        <total_amount>100</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>15</order_id>
+        <customer_id>1</customer_id>
+        <order_date>2022-07-07</order_date>
+        <total_amount>30</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>16</order_id>
+        <customer_id>1</customer_id>
+        <order_date>2023-02-02</order_date>
+        <total_amount>34</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>17</order_id>
+        <customer_id>1</customer_id>
+        <order_date>3923-07-09</order_date>
+        <total_amount>50</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>18</order_id>
+        <customer_id>1</customer_id>
+        <order_date>3923-07-09</order_date>
+        <total_amount>50</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>19</order_id>
+        <customer_id>1</customer_id>
+        <order_date>3923-07-09</order_date>
+        <total_amount>50</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>20</order_id>
+        <customer_id>1</customer_id>
+        <order_date>3923-07-09</order_date>
+        <total_amount>50</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>21</order_id>
+        <customer_id>1</customer_id>
+        <order_date>3923-07-09</order_date>
+        <total_amount>50</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>22</order_id>
+        <customer_id>1</customer_id>
+        <order_date>3923-07-09</order_date>
+        <total_amount>50</total_amount>
+    </Order>
+
+    <Order>
+        <order_id>23</order_id>
+        <customer_id>1</customer_id>
+        <order_date>3923-07-09</order_date>
+        <total_amount>50</total_amount>
+    </Order>
+</Orders>

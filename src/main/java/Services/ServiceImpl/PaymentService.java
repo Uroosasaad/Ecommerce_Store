@@ -6,12 +6,12 @@ import Services.CRUService;
 
 import java.util.List;
 
-public class PaymentCRUImpl implements CRUService<Payment> {
+public class PaymentService implements CRUService<Payment> {
 
 
     PaymentDao paymentDao = null;
 
-    public PaymentCRUImpl(PaymentDao paymentDao) {
+    public PaymentService(PaymentDao paymentDao) {
         this.paymentDao = paymentDao;
     }
 
