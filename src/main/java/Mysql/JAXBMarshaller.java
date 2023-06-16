@@ -1,5 +1,8 @@
 package Mysql;
 
+import Entities.BaseEntity;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Unmarshaller;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,63 +12,42 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
-public class DOMParser {
+public class JAXBMarshaller {
 
-    public void customersDomParser(String XMLFilePath) {
+    public void xmlParser(String XMLFilePath) {
         try {
-
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-
-            DocumentBuilder builder = factory.newDocumentBuilder();
-
-
+            String[] classes = {"Customer", "Category", "Address", "Supplier", "Order"};
             File xmlFile = new File(XMLFilePath);
-
-
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
-
-
             Element rootElement = document.getDocumentElement();
 
+            for (String a_class : classes) {
+                Class c = Class.forName("Entities." + a_class);
+                JAXBContext customerContext = JAXBContext.newInstance(c);
+                Unmarshaller userUnmarshaller = customerContext.createUnmarshaller();
 
-            NodeList customerNodes = rootElement.getElementsByTagName("Customer");
+                 NodeList customerNodes = rootElement.getElementsByTagName(a_class.toLowerCase());
+                for (int i = 0; i < customerNodes.getLength(); i++) {
+                    Node customerNode = customerNodes.item(i);
 
-
-
-            for (int i = 0; i < customerNodes.getLength(); i++) {
-                Node customerNode = customerNodes.item(i);
-
-                if (customerNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element customerElement = (Element) customerNode;
-
-
-                    Element firstNameElement = (Element) customerElement.getElementsByTagName("first_name").item(0);
-                    String firstName = firstNameElement.getTextContent();
-
-
-                    Element lastNameElement = (Element) customerElement.getElementsByTagName("last_name").item(0);
-                    String lastName = lastNameElement.getTextContent();
-
-
-                    Element emailElement = (Element) customerElement.getElementsByTagName("email").item(0);
-                    String email = emailElement.getTextContent();
-
-                    System.out.println("customer:");
-                    System.out.println("first_name: " + firstName);
-                    System.out.println("last_name: " + lastName);
-                    System.out.println("email: " + email);
-                    System.out.println();
+                    if (customerNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element customerElement = (Element) customerNode;
+                        BaseEntity baseEntity = (BaseEntity) userUnmarshaller.unmarshal(customerNode);
+                        System.out.println(baseEntity.toString());
+                    }
                 }
             }
-        }
-        catch (Exception e) {
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public void AddressDOMParser (String XMLFilePath) {
+    public void AddressDOMParser(String XMLFilePath) {
         try {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -84,7 +66,6 @@ public class DOMParser {
 
 
             NodeList addressNodes = rootElement.getElementsByTagName("Address");
-
 
 
             for (int i = 0; i < addressNodes.getLength(); i++) {
@@ -116,14 +97,13 @@ public class DOMParser {
                     System.out.println();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public void OrdersDOMParser (String XMLFilePath) {
+    public void OrdersDOMParser(String XMLFilePath) {
         try {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -144,7 +124,6 @@ public class DOMParser {
             NodeList orderNodes = rootElement.getElementsByTagName("Order");
 
 
-
             for (int i = 0; i < orderNodes.getLength(); i++) {
                 Node orderNode = orderNodes.item(i);
 
@@ -157,12 +136,11 @@ public class DOMParser {
 
 
                     Element orderDateElement = (Element) orderElement.getElementsByTagName("order_date").item(0);
-                    Long orderDate = Long.parseLong( orderDateElement.getTextContent());
+                    Long orderDate = Long.parseLong(orderDateElement.getTextContent());
 
 
                     Element totalAmountElement = (Element) orderElement.getElementsByTagName("total_amount").item(0);
                     String totalAmount = totalAmountElement.getTextContent();
-
 
 
                     System.out.println("Order: ");
@@ -172,14 +150,13 @@ public class DOMParser {
                     System.out.println();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public void suppliersDOMParser (String XMLFilePath) {
+    public void suppliersDOMParser(String XMLFilePath) {
         try {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -200,7 +177,6 @@ public class DOMParser {
             NodeList supplierNodes = rootElement.getElementsByTagName("Supplier");
 
 
-
             for (int i = 0; i < supplierNodes.getLength(); i++) {
                 Node supplierNode = supplierNodes.item(i);
 
@@ -212,20 +188,17 @@ public class DOMParser {
                     String supplierName = supplierElement.getTextContent();
 
 
-
-
                     System.out.println("Supplier: ");
                     System.out.println("supplier_name" + supplierName);
                     System.out.println();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void CategoriesDOMParser (String XMLFilePath) {
+    public void CategoriesDOMParser(String XMLFilePath) {
         try {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -246,7 +219,6 @@ public class DOMParser {
             NodeList categoryNodes = rootElement.getElementsByTagName("Category");
 
 
-
             for (int i = 0; i < categoryNodes.getLength(); i++) {
                 Node categoryNode = categoryNodes.item(i);
 
@@ -258,15 +230,12 @@ public class DOMParser {
                     String categoryName = categoryNameElement.getTextContent();
 
 
-
-
                     System.out.println("Category: ");
                     System.out.println("category_name" + categoryName);
                     System.out.println();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

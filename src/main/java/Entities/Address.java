@@ -1,13 +1,24 @@
 package Entities;
 
+import jakarta.xml.bind.annotation.*;
 
-public class Address {
+@XmlRootElement(name="address")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Address extends BaseEntity {
 
+  @XmlAttribute (name = "id")
   private long addressId;
+  @XmlElement(name = "street")
   private String street;
+  @XmlElement(name = "city")
   private String city;
+  @XmlElement(name = "state")
   private String state;
+  @XmlElement(name = "zip_code")
   private long zipCode;
+
+  public Address() {
+  }
 
   public Address(long addressId, String street, String city, String state, long zipCode) {
     this.addressId = addressId;
@@ -60,5 +71,10 @@ public class Address {
   public void setZipCode(long zipCode) {
     this.zipCode = zipCode;
   }
+  @Override
+  public String toString() {
+      return "Address Id: " + this.getAddressId() + " - Street Name: " + this.getStreet();
 
-}
+    }
+  }
+

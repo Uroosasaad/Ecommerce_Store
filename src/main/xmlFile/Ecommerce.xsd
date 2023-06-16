@@ -1,0 +1,56 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ecommercestore">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="address" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="street"/>
+                            <xs:element type="xs:string" name="city"/>
+                            <xs:element type="xs:string" name="state"/>
+                            <xs:element type="xs:int" name="zip_code"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:byte" name="id" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="category" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="category_name"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:byte" name="id" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="supplier" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="supplier_name"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:byte" name="id" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="order" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:byte" name="customer_id"/>
+                            <xs:element type="xs:date" name="order_date"/>
+                            <xs:element type="xs:byte" name="total_amount"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:byte" name="id" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="customer" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="first_name"/>
+                            <xs:element type="xs:string" name="last_name"/>
+                            <xs:element type="xs:string" name="email"/>
+                            <xs:element type="xs:byte" name="address_id"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:byte" name="id" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

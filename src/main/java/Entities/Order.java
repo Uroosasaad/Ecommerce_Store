@@ -1,19 +1,30 @@
 package Entities;
 
 
+import jakarta.xml.bind.annotation.*;
+
 import java.sql.Date;
+@XmlRootElement(name="order")
+@XmlAccessorType(XmlAccessType.FIELD)
 
-public class Order {
+public class Order  extends BaseEntity {
 
+@XmlAttribute(name = "id")
   private long orderId;
+  @XmlElement(name = "customer_id")
   private long customerId;
+ // @XmlElement(name = "order_date")
   private Date orderDate;
+  @XmlElement(name = "total_amount")
   private long totalAmount;
 
   public Order(long customerId, Date orderDate, long totalAmount) {
     this.customerId = customerId;
     this.orderDate = orderDate;
     this.totalAmount = totalAmount;
+  }
+
+  public Order() {
   }
 
   public Order(long orderId, long customerId, Date orderDate, long totalAmount) {
@@ -58,4 +69,9 @@ public class Order {
     this.totalAmount = totalAmount;
   }
 
+
+  @Override
+  public String toString() {
+    return  "total Amount : " + this.getTotalAmount();
+  }
 }

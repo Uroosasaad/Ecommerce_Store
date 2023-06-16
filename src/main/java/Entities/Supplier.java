@@ -1,9 +1,13 @@
 package Entities;
 
+import jakarta.xml.bind.annotation.*;
 
-public class Supplier {
-
+@XmlRootElement(name="supplier")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Supplier  extends BaseEntity{
+  @XmlAttribute(name = "id")
   private long supplierId;
+  @XmlElement(name = "supplier_name")
   private String supplierName;
 
   public Supplier(long supplierId, String supplierName) {
@@ -28,4 +32,11 @@ public class Supplier {
     this.supplierName = supplierName;
   }
 
+  public Supplier() {
+  }
+
+  @Override
+  public String toString() {
+    return "Supplier Id: " + this.getSupplierId() + " - Supplier Name: " + this.getSupplierName();
+  }
 }

@@ -13,8 +13,7 @@ import java.io.IOException;
 
 public class XMLSchemaValidator {
     public static boolean validateXML (String xmlFilePath,String xsdFilePath) {
-//        String xmlFilePath = "src\\main\\xmlFile\\Customers.xml";
-//        String xsdFilePath = "src\\main\\xmlFile\\Customer.xsd";
+
 
         boolean isValid = validateXMLSchema(xmlFilePath, xsdFilePath);
         if (isValid) {
