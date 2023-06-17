@@ -31,8 +31,8 @@ public class SupplierService implements CRUService<Supplier> {
     }
 
     @Override
-    public void update(Supplier supplier, String[] params) {
-        supplierDao.update(supplier, params );
+    public void update(Supplier supplier) {
+        supplierDao.update(supplier);
 
     }
 

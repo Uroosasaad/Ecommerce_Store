@@ -32,8 +32,8 @@ public class ReviewService implements CRUService<Review>, DeleteService<Review> 
     }
 
     @Override
-    public void update(Review review, String[] params) {
-        reviewDao.update(review, params);
+    public void update(Review review) {
+        reviewDao.update(review);
 
     }
 

@@ -59,13 +59,12 @@ public class CustomerDao extends AbstractDao<Customer>{
     }
 
     @Override
-    public void update(Customer customer, String[] params) {
-        String SQL_UPDATE="Update customers set first_name=?,last_name=?,email=?, phone_number=? where customer_id=?";
+    public void update(Customer customer) {
+        String SQL_UPDATE="Update customers set first_name=?,last_name=?,email=? where customer_id=?";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_UPDATE)){
-            ps.setString(1, params[0]);
-            ps.setString(2, params[1]);
-            ps.setString(3, params[2]);
-            ps.setString(4, params[3]);
+            ps.setString(1, customer.getFirstName());
+            ps.setString(2, customer.getLastName());
+            ps.setString(3, customer.getEmail());
             ps.setLong(5,customer.getCustomerId());
             ps.executeUpdate();
         } catch(SQLException e){

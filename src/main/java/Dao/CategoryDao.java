@@ -12,7 +12,7 @@ public class CategoryDao extends AbstractDao<Category> {
 
     @Override
     public Category getById(int id) {
-        String SQL_SELECT = "Select * from category where category_id=?";
+        String SQL_SELECT = "Select * from categories where category_id=?";
         try (PreparedStatement preparedStatement = this.executePrepareStatement(SQL_SELECT)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -29,7 +29,7 @@ public class CategoryDao extends AbstractDao<Category> {
     @Override
     public List<Category> getAll() {
         List<Category> categories = new ArrayList<>();
-        String SQL_SELECT_ALL = "Select * from category";
+        String SQL_SELECT_ALL = "Select * from categories";
         try(PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
@@ -54,10 +54,10 @@ public class CategoryDao extends AbstractDao<Category> {
     }
 
     @Override
-    public void update(Category category, String[] params) {
-        String SQL_UPDATE = "Update category set category_id=?,category_name=?";
+    public void update(Category category) {
+        String SQL_UPDATE = "Update categories set category_name=? where category_id=?";
         try (PreparedStatement ps = this.executePrepareStatement(SQL_UPDATE)) {
-            ps.setString(1, params[0]);
+            ps.setString(1, category.getCategoryName());
             ps.setLong(2, category.getCategoryId());
             ps.executeUpdate();
         } catch (SQLException e) {

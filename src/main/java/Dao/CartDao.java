@@ -12,7 +12,7 @@ public class CartDao extends AbstractDao<Cart> implements DAODelete<Cart> {
 
     @Override
     public Cart getById(int id) {
-        String SQL_SELECT = "Select * from cart where cart_id=?";
+        String SQL_SELECT = "Select * from carts where cart_id=?";
         try (PreparedStatement preparedStatement = this.executePrepareStatement(SQL_SELECT)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -46,7 +46,7 @@ public class CartDao extends AbstractDao<Cart> implements DAODelete<Cart> {
 
     @Override
     public void create(Cart cart) {
-        String SQL_INSERT = "Insert into cart(cart_id,customer_id,created_date) values(?,?,?)";
+        String SQL_INSERT = "Insert into carts(cart_id,customer_id,created_date) values(?,?,?)";
         try (PreparedStatement ps = this.executePrepareStatement(SQL_INSERT)) {
                 ps.setLong(1, cart.getCartId());
                 ps.setLong(2, cart.getCustomerId());
@@ -58,8 +58,8 @@ public class CartDao extends AbstractDao<Cart> implements DAODelete<Cart> {
     }
 
     @Override
-    public void update(Cart cart, String[] params) {
-        String SQL_UPDATE="Update cart set cart_id=?,customer_id=?,created_date=? where cart_id=?";
+    public void update(Cart cart) {
+        String SQL_UPDATE="Update carts set customer_id=?,created_date=? where cart_id=?";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_UPDATE)){
             ps.setLong(1, cart.getCartId());
             ps.setLong(2, cart.getCustomerId());
@@ -73,7 +73,7 @@ public class CartDao extends AbstractDao<Cart> implements DAODelete<Cart> {
 
     @Override
     public void delete(Cart cart) {
-        String SQL_DELETE="Delete from cart where cart_id=?";
+        String SQL_DELETE="Delete from carts where cart_id=?";
         try (PreparedStatement ps = this.executePrepareStatement(SQL_DELETE)){
             ps.setLong(1, cart.getCartId());
             ps.setLong(2, cart.getCustomerId());

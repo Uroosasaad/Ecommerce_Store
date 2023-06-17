@@ -29,8 +29,8 @@ public class CustomerService implements CRUService<Customer> {
     }
 
     @Override
-    public void update(Customer customer, String[] params) {
-        customerDao.update(customer,params);
+    public void update(Customer customer) {
+        customerDao.update(customer);
     }
 
 }

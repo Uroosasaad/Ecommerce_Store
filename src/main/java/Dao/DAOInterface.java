@@ -5,7 +5,7 @@ public interface DAOInterface<T> {
     T getById(int id);
     List<T> getAll();
     void create(T t);
-    void update(T t, String[] params);
+    void update(T t);
 
 
 }

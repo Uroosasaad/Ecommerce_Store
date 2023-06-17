@@ -32,8 +32,8 @@ public class ProductService implements CRUService<Product>, DeleteService<Produc
     }
 
     @Override
-    public void update(Product product, String[] params) {
-        productDao.update(product, params);
+    public void update(Product product) {
+        productDao.update(product);
 
     }
 

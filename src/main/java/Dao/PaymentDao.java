@@ -63,8 +63,8 @@ public class PaymentDao extends AbstractDao<Payment> {
     }
 
     @Override
-    public void update(Payment payment, String[] params) {
-        String SQL_UPDATE = "Update payment set payment_id=?, order_id=?, payment_Date=?, payment_Amount=? where payment_id =?";
+    public void update(Payment payment) {
+        String SQL_UPDATE = "Update payments set  order_id=?, payment_Date=?, payment_Amount=? where payment_id =?";
         try (PreparedStatement ps = this.executePrepareStatement(SQL_UPDATE)) {
             ps.setLong(1, payment.getPaymentId());
             ps.setLong(2, payment.getOrderId());

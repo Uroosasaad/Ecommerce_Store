@@ -13,7 +13,7 @@ public class ReviewDao extends AbstractDao<Review> implements DAODelete<Review> 
 
     @Override
     public Review getById(int id) {
-        String SQL_SELECT = "Select * from review where review_id=?";
+        String SQL_SELECT = "Select * from reviews where review_id=?";
         try (PreparedStatement preparedStatement = this.executePrepareStatement(SQL_SELECT)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -62,14 +62,14 @@ public class ReviewDao extends AbstractDao<Review> implements DAODelete<Review> 
     }
 
     @Override
-    public void update(Review review, String[] params) {
-        String SQL_UPDATE="Update review set review_id,=?,customer_id=?,product_id=?, rating=?, comment=? where review_id=?";
+    public void update(Review review) {
+        String SQL_UPDATE="Update reviews set customer_id=?,product_id=?, rating=?, comment=? where review_id=?";
         try (PreparedStatement ps =this.executePrepareStatement(SQL_UPDATE)){
-            ps.setString(1, params[0]);
-            ps.setString(2, params[1]);
-            ps.setString(3, params[2]);
-            ps.setString(4, params[3]);
-            ps.setString(4, params[4]);
+            ps.setLong(1, review.getCustomerId());
+            ps.setLong(2, review.getProductId());
+            ps.setLong(3, review.getRating());
+            ps.setString(4, review.getComment());
+            ps.setLong(4, review.getReviewId());
             ps.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class ReviewDao extends AbstractDao<Review> implements DAODelete<Review> 
 
     @Override
     public void delete(Review review) {
-        String SQL_DELETE="Delete from review where review_id=?";
+        String SQL_DELETE="Delete from reviews where review_id=?";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_DELETE)){
             ps.setLong(1, review.getReviewId());
             ps.executeUpdate();

@@ -31,7 +31,7 @@ public class OrderDao extends AbstractDao<Order> implements DAODelete<Order>{
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
-        String SQL_SELECT_ALL = "Select* from orders";
+        String SQL_SELECT_ALL = "Select * from orders";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
@@ -60,13 +60,12 @@ public class OrderDao extends AbstractDao<Order> implements DAODelete<Order>{
     }
 
     @Override
-    public void update(Order order, String[] params) {
-        String SQL_UPDATE="Update order set order_id=?,order_date=?,customer_id=?, total_amount=? where order_id=?";
+    public void update(Order order) {
+        String SQL_UPDATE="Update orders set order_date=?,customer_id=?, total_amount=? where order_id=?";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_UPDATE)){
-            ps.setString(1, params[0]);
-            ps.setString(2, params[1]);
-            ps.setString(3, params[2]);
-            ps.setString(4, params[3]);
+            ps.setDate(1, order.getOrderDate());
+            ps.setLong(2, order.getCustomerId());
+            ps.setLong(3,order.getTotalAmount());
             ps.setLong(5,order.getOrderId());
             ps.executeUpdate();
         } catch(SQLException e){
@@ -76,7 +75,7 @@ public class OrderDao extends AbstractDao<Order> implements DAODelete<Order>{
 
     @Override
     public void delete(Order order) {
-        String SQL_DELETE="Delete from order where order_id=?";
+        String SQL_DELETE="Delete from orders where order_id=?";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_DELETE)){
             ps.setLong(1, order.getOrderId());
             ps.executeUpdate();

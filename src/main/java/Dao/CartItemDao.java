@@ -12,7 +12,7 @@ public class CartItemDao extends AbstractDao<CartItem> {
 
     @Override
     public CartItem getById(int id) {
-        String SQL_SELECT = "Select * from cartItem where cartItem_id=?";
+        String SQL_SELECT = "Select * from cart_items where cart_item_id=?";
         try (PreparedStatement preparedStatement = this.executePrepareStatement(SQL_SELECT)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -30,7 +30,7 @@ public class CartItemDao extends AbstractDao<CartItem> {
     @Override
     public List<CartItem> getAll() {
         List<CartItem> cartItems = new ArrayList<>();
-        String SQL_SELECT_ALL = "Select * from cartItems";
+        String SQL_SELECT_ALL = "Select * from cart_items";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
@@ -47,7 +47,7 @@ public class CartItemDao extends AbstractDao<CartItem> {
 
     @Override
     public void create(CartItem cartItem) {
-        String SQL_INSERT = "Insert into cartItems (cart_item_id, cart_id, product_id, quantity) values(?,?,?,?)";
+        String SQL_INSERT = "Insert into cart_items (cart_item_id, cart_id, product_id, quantity) values(?,?,?,?)";
         try (PreparedStatement ps= this.executePrepareStatement(SQL_INSERT)) {
             ps.setLong(1, cartItem.getCartItemId());
             ps.setLong(2, cartItem.getCartId());
@@ -60,13 +60,13 @@ public class CartItemDao extends AbstractDao<CartItem> {
     }
 
     @Override
-    public void update(CartItem cartItem, String[] params) {
-        String SQL_UPDATE="Update cartItem set cart_item_id,=?,cart_id=?,product_id=?, quantity=? where cartItem_id=?";
+    public void update(CartItem cartItem) {
+        String SQL_UPDATE="Update cart_items set cart_id=?,product_id=?, quantity=? where cart_item_id=?";
         try (PreparedStatement ps= this.executePrepareStatement(SQL_UPDATE)) {
-            ps.setString(1, params[0]);
-            ps.setString(2, params[1]);
-            ps.setString(3, params[2]);
-            ps.setString(4, params[3]);
+            ps.setLong(1, cartItem.getCartId());
+            ps.setLong(2, cartItem.getProductId());
+            ps.setLong(3, cartItem.getQuantity());
+            ps.setLong(4, cartItem.getCartItemId());
             ps.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();

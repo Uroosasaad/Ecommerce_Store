@@ -33,8 +33,8 @@ public class PaymentService implements CRUService<Payment> {
     }
 
     @Override
-    public void update(Payment payment, String[] params) {
-        paymentDao.update(payment, params);
+    public void update(Payment payment) {
+        paymentDao.update(payment);
 
     }
 

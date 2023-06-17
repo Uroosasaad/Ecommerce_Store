@@ -33,8 +33,8 @@ public class OrderService implements CRUService<Order>, DeleteService<Order> {
     }
 
     @Override
-    public void update(Order order, String[] params) {
-        orderDao.update(order, params);
+    public void update(Order order) {
+        orderDao.update(order);
 
     }
 

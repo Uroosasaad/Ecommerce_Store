@@ -13,7 +13,7 @@ public class ProductDao extends AbstractDao<Product>{
 
     @Override
     public Product getById(int id) {
-        String SQL_SELECT = "Select * from product where product_id=?";
+        String SQL_SELECT = "Select * from products where product_id=?";
         try (PreparedStatement preparedStatement = this.executePrepareStatement(SQL_SELECT)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -61,13 +61,13 @@ public class ProductDao extends AbstractDao<Product>{
     }
 
     @Override
-    public void update(Product product, String[] params) {
-        String SQL_UPDATE="Update product set product_id,=?,product_name=?,product_price=?, category_id=? where product_id=?";
+    public void update(Product product) {
+        String SQL_UPDATE="Update products set product_name=?,product_price=?, category_id=? where product_id=?";
         try (PreparedStatement ps =this.executePrepareStatement(SQL_UPDATE)){
-            ps.setString(1, params[0]);
-            ps.setString(2, params[1]);
-            ps.setString(3, params[2]);
-            ps.setString(4, params[3]);
+            ps.setString(1, product.getProductName());
+            ps.setLong(2, product.getPrice());
+            ps.setLong(3, product.getCategoryId());
+            ps.setLong(4, product.getProductId());
             ps.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();

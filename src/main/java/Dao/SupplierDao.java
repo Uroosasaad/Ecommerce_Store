@@ -14,7 +14,7 @@ public class SupplierDao extends AbstractDao<Supplier>{
 
     @Override
     public Supplier getById(int id) {
-        String SQL_SELECT = "Select * from supplier where supplier_id=?";
+        String SQL_SELECT = "Select * from suppliers where supplier_id=?";
         try (PreparedStatement preparedStatement = this.executePrepareStatement(SQL_SELECT)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -31,7 +31,7 @@ public class SupplierDao extends AbstractDao<Supplier>{
     @Override
     public List<Supplier> getAll() {
         List<Supplier> suppliers = new ArrayList<>();
-        String SQL_SELECT_ALL = "Select * from supplier";
+        String SQL_SELECT_ALL = "Select * from suppliers";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
@@ -59,10 +59,10 @@ public class SupplierDao extends AbstractDao<Supplier>{
     }
 
     @Override
-    public void update(Supplier supplier, String[] params) {
-        String SQL_UPDATE = "Update supplier set supplier_id=?,supplier_name=?";
+    public void update(Supplier supplier) {
+        String SQL_UPDATE = "Update suppliers set supplier_name=? where supplier_id=?";
         try (PreparedStatement ps = this.executePrepareStatement(SQL_UPDATE)) {
-            ps.setString(1, params[0]);
+            ps.setString(1, supplier.getSupplierName());
             ps.setLong(2, supplier.getSupplierId());
             ps.executeUpdate();
         } catch (SQLException e) {
