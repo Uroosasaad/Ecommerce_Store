@@ -1,41 +1,38 @@
 package Entities;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+public class Address {
 
-@XmlRootElement(name="address")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Address extends BaseEntity {
+  @JsonProperty("@id")
+  private byte id;
 
-  @XmlAttribute (name = "id")
-  private long addressId;
-  @XmlElement(name = "street")
+  @JsonProperty("street")
   private String street;
-  @XmlElement(name = "city")
+
+  @JsonProperty("city")
   private String city;
-  @XmlElement(name = "state")
+
+  @JsonProperty("state")
   private String state;
-  @XmlElement(name = "zip_code")
-  private long zipCode;
 
-  public Address() {
-  }
+  @JsonProperty("zip_code")
+  private int zipCode;
 
-  public Address(long addressId, String street, String city, String state, long zipCode) {
-    this.addressId = addressId;
+  public Address(byte id, String street, String city, String state, int zipCode) {
+    this.id = id;
     this.street = street;
     this.city = city;
     this.state = state;
     this.zipCode = zipCode;
   }
 
-  public long getAddressId() {
-    return addressId;
+  public byte getId() {
+    return id;
   }
 
-  public void setAddressId(long addressId) {
-    this.addressId = addressId;
+  public void setId(byte id) {
+    this.id = id;
   }
-
 
   public String getStreet() {
     return street;
@@ -45,7 +42,6 @@ public class Address extends BaseEntity {
     this.street = street;
   }
 
-
   public String getCity() {
     return city;
   }
@@ -53,7 +49,6 @@ public class Address extends BaseEntity {
   public void setCity(String city) {
     this.city = city;
   }
-
 
   public String getState() {
     return state;
@@ -63,17 +58,16 @@ public class Address extends BaseEntity {
     this.state = state;
   }
 
-
-  public long getZipCode() {
+  public int getZipCode() {
     return zipCode;
   }
 
-  public void setZipCode(long zipCode) {
+  public void setZipCode(int zipCode) {
     this.zipCode = zipCode;
   }
-  @Override
+    @Override
   public String toString() {
-      return "Address Id: " + this.getAddressId() + " - Street Name: " + this.getStreet();
+      return "Address Id: " + this.getId() + " - Street Name: " + this.getStreet();
 
     }
   }

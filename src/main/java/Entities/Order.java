@@ -1,77 +1,65 @@
 package Entities;
 
-
-import jakarta.xml.bind.annotation.*;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Date;
-@XmlRootElement(name="order")
-@XmlAccessorType(XmlAccessType.FIELD)
 
 public class Order  extends BaseEntity {
 
-@XmlAttribute(name = "id")
-  private long orderId;
-  @XmlElement(name = "customer_id")
-  private long customerId;
- // @XmlElement(name = "order_date")
-  private Date orderDate;
-  @XmlElement(name = "total_amount")
-  private long totalAmount;
+    @JsonProperty("@id")
+    private byte id;
 
-  public Order(long customerId, Date orderDate, long totalAmount) {
-    this.customerId = customerId;
-    this.orderDate = orderDate;
-    this.totalAmount = totalAmount;
-  }
+    @JsonProperty("customer_id")
+    private byte customerId;
 
-  public Order() {
-  }
+    @JsonProperty("order_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date orderDate;
 
-  public Order(long orderId, long customerId, Date orderDate, long totalAmount) {
-    this.orderId = orderId;
-    this.customerId = customerId;
-    this.orderDate = orderDate;
-    this.totalAmount = totalAmount;
-  }
+    @JsonProperty("total_amount")
+    private byte totalAmount;
 
-  public long getOrderId() {
-    return orderId;
-  }
+    public Order(byte id, byte customerId, Date orderDate, byte totalAmount) {
+        this.id = id;
+        this.customerId = customerId;
+        this.orderDate = orderDate;
+        this.totalAmount = totalAmount;
+    }
 
-  public void setOrderId(long orderId) {
-    this.orderId = orderId;
-  }
+    public byte getId() {
+        return id;
+    }
 
+    public void setId(byte id) {
+        this.id = id;
+    }
 
-  public long getCustomerId() {
-    return customerId;
-  }
+    public byte getCustomerId() {
+        return customerId;
+    }
 
-  public void setCustomerId(long customerId) {
-    this.customerId = customerId;
-  }
+    public void setCustomerId(byte customerId) {
+        this.customerId = customerId;
+    }
 
+    public Date getOrderDate() {
+        return orderDate;
+    }
 
-  public java.sql.Date getOrderDate() {
-    return orderDate;
-  }
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
 
-  public void setOrderDate(java.sql.Date orderDate) {
-    this.orderDate = orderDate;
-  }
+    public byte getTotalAmount() {
+        return totalAmount;
+    }
 
+    public void setTotalAmount(byte totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
-  public long getTotalAmount() {
-    return totalAmount;
-  }
-
-  public void setTotalAmount(long totalAmount) {
-    this.totalAmount = totalAmount;
-  }
-
-
-  @Override
-  public String toString() {
-    return  "total Amount : " + this.getTotalAmount();
-  }
+    @Override
+    public String toString() {
+        return "Order Id: " + this.getId() + "Order Date: " + this.getOrderDate();
+    }
 }

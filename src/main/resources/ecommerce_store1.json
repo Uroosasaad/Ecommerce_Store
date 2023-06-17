@@ -1,0 +1,14 @@
+{
+  "ecommerce_store": {
+    "category": [
+      {
+        "@id": "1",
+        "category_name": "Foods"
+      },
+      {
+        "@id": "2",
+        "category_name": "Dairy"
+      }
+    ]
+  }
+}

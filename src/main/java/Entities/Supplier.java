@@ -1,28 +1,26 @@
 package Entities;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@XmlRootElement(name="supplier")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Supplier  extends BaseEntity{
-  @XmlAttribute(name = "id")
-  private long supplierId;
-  @XmlElement(name = "supplier_name")
+public class Supplier  extends BaseEntity {
+  @JsonProperty("@id")
+  private byte id;
+
+  @JsonProperty("supplier_name")
   private String supplierName;
 
-  public Supplier(long supplierId, String supplierName) {
-    this.supplierId = supplierId;
+  public Supplier(byte id, String supplierName) {
+    this.id = id;
     this.supplierName = supplierName;
   }
 
-  public long getSupplierId() {
-    return supplierId;
+  public byte getId() {
+    return id;
   }
 
-  public void setSupplierId(long supplierId) {
-    this.supplierId = supplierId;
+  public void setId(byte id) {
+    this.id = id;
   }
-
 
   public String getSupplierName() {
     return supplierName;
@@ -32,11 +30,8 @@ public class Supplier  extends BaseEntity{
     this.supplierName = supplierName;
   }
 
-  public Supplier() {
-  }
-
   @Override
   public String toString() {
-    return "Supplier Id: " + this.getSupplierId() + " - Supplier Name: " + this.getSupplierName();
+    return "Supplier Id: " + this.getId() + " - Supplier Name: " + this.getSupplierName();
   }
 }

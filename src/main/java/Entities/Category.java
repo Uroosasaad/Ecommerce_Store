@@ -1,33 +1,25 @@
 package Entities;
 
-
-import jakarta.xml.bind.annotation.*;
-
-@XmlRootElement(name="category")
-@XmlAccessorType(XmlAccessType.FIELD)
+import com.fasterxml.jackson.annotation.JsonProperty;
 public class Category  extends BaseEntity{
+    @JsonProperty("@id")
+    private byte id;
 
-  @XmlAttribute(name = "id")
-  private long categoryId;
-  @XmlElement(name = "category_name")
-  private String categoryName;
+    @JsonProperty("category_name")
+    private String categoryName;
 
-  public Category() {
-  }
-
-  public Category(long categoryId, String categoryName) {
-    this.categoryId = categoryId;
+  public Category(byte id, String categoryName) {
+    this.id = id;
     this.categoryName = categoryName;
   }
 
-  public long getCategoryId() {
-    return categoryId;
+  public byte getId() {
+    return id;
   }
 
-  public void setCategoryId(long categoryId) {
-    this.categoryId = categoryId;
+  public void setId(byte id) {
+    this.id = id;
   }
-
 
   public String getCategoryName() {
     return categoryName;
@@ -36,8 +28,8 @@ public class Category  extends BaseEntity{
   public void setCategoryName(String categoryName) {
     this.categoryName = categoryName;
   }
-  @Override
+
   public String toString() {
-    return "Category Id: " + this.getCategoryId() + " - Category Name: " + this.getCategoryName();
+    return "Category Id: " + this.getId() + " - Category Name: " + this.getCategoryName();
   }
 }

@@ -1,41 +1,38 @@
 package Entities;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@XmlRootElement(name="customer")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Customer  extends BaseEntity {
-  @XmlAttribute(name = "id")
-  public long customerId;
-  @XmlElement(name = "first_name")
-  public String firstName;
-  @XmlElement(name = "last_name")
-  public String lastName;
-  @XmlElement(name = "email")
-  public String email;
-  @XmlElement(name = "address_id")
-  public long addressId;
+  @JsonProperty("@id")
+  private byte id;
 
-  public Customer( ) {
+  @JsonProperty("first_name")
+  private String firstName;
 
-  }
+  @JsonProperty("last_name")
+  private String lastName;
 
-  public Customer(long customerId, String firstName, String lastName, String email, long addressId) {
-    this.customerId = customerId;
+  @JsonProperty("email")
+  private String email;
+
+  @JsonProperty("address_id")
+  private byte addressId;
+
+  public Customer(byte id, String firstName, String lastName, String email, byte addressId) {
+    this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.addressId = addressId;
   }
 
-  public long getCustomerId() {
-    return customerId;
+  public byte getId() {
+    return id;
   }
 
-  public void setCustomerId(long customerId) {
-    this.customerId = customerId;
+  public void setId(byte id) {
+    this.id = id;
   }
-
 
   public String getFirstName() {
     return firstName;
@@ -45,7 +42,6 @@ public class Customer  extends BaseEntity {
     this.firstName = firstName;
   }
 
-
   public String getLastName() {
     return lastName;
   }
@@ -53,7 +49,6 @@ public class Customer  extends BaseEntity {
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }
-
 
   public String getEmail() {
     return email;
@@ -63,18 +58,16 @@ public class Customer  extends BaseEntity {
     this.email = email;
   }
 
-
-  public long getAddressId() {
+  public byte getAddressId() {
     return addressId;
   }
 
-  public void setAddressId(long addressId) {
+  public void setAddressId(byte addressId) {
     this.addressId = addressId;
   }
 
-
   @Override
   public String toString() {
-    return "Customer Id: " + this.getCustomerId() + " - First Name: " + this.getFirstName();
+    return "Customer Id: " + this.getId() + " - First Name: " + this.getFirstName();
   }
 }
