@@ -31,7 +31,8 @@ public class CustomerDao extends AbstractDao<Customer>{
         String SQL_SELECT_ALL = "Select * from customers";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()){
+
                 customers.add(new Customer(rs.getInt("customer_id"),rs.getString("first_name"),
                         rs.getString("last_name"), rs.getString("email"), rs.getLong("addressId")
                 ));
