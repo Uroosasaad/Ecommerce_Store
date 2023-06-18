@@ -13,9 +13,6 @@ import java.io.IOException;
 
 public class XMLSchemaValidator {
     public static boolean validateXML (String xmlFilePath,String xsdFilePath) {
-//        String xmlFilePath = "src\\main\\xmlFile\\Customers.xml";
-//        String xsdFilePath = "src\\main\\xmlFile\\Customer.xsd";
-
         boolean isValid = validateXMLSchema(xmlFilePath, xsdFilePath);
         if (isValid) {
             System.out.println("XML file is valid against the XSD schema.");
@@ -25,7 +22,6 @@ public class XMLSchemaValidator {
         }
         return false;
     }
-
     public static boolean validateXMLSchema(String xmlFilePath, String xsdFilePath) {
         try {
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -40,4 +36,3 @@ public class XMLSchemaValidator {
         }
     }
 }
-
