@@ -28,7 +28,7 @@ public class CartItemDao extends AbstractDao<CartItem> {
         String SQL_SELECT_ALL = "Select * from cart_items";
         try (PreparedStatement ps=this.executePrepareStatement(SQL_SELECT_ALL)) {
             ResultSet rs=ps.executeQuery();
-            while(rs.next()){
+         while (rs.next()){
                 cartItems.add(new CartItem(rs.getLong("cart_item_id"),rs.getLong("cart_id"),
                         rs.getLong("product_id"),  rs.getLong("quantity")
                 ));
