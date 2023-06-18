@@ -1,16 +1,11 @@
 package Dao;
-
 import Entities.Order;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class OrderDao extends AbstractDao<Order> implements DAODelete<Order>{
-
-
     @Override
     public Order getById(int id) {
         String SQL_SELECT = "Select * from orders where order_id=?";
@@ -27,7 +22,6 @@ public class OrderDao extends AbstractDao<Order> implements DAODelete<Order>{
         }
         return null;
     }
-
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
@@ -45,7 +39,6 @@ public class OrderDao extends AbstractDao<Order> implements DAODelete<Order>{
         }
         return null;
     }
-
     @Override
     public void create(Order order) {
         String SQL_INSERT = "Insert into orders (customer_id, order_date, total_amount) values(?,?,?)";
@@ -58,7 +51,6 @@ public class OrderDao extends AbstractDao<Order> implements DAODelete<Order>{
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(Order order) {
         String SQL_UPDATE="Update orders set order_date=?,customer_id=?, total_amount=? where order_id=?";
@@ -72,7 +64,6 @@ public class OrderDao extends AbstractDao<Order> implements DAODelete<Order>{
             e.printStackTrace();
         }
     }
-
     @Override
     public void delete(Order order) {
         String SQL_DELETE="Delete from orders where order_id=?";

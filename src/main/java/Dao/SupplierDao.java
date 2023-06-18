@@ -1,17 +1,11 @@
 package Dao;
-
-import Entities.Category;
-import Entities.Review;
 import Entities.Supplier;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class SupplierDao extends AbstractDao<Supplier>{
-
     @Override
     public Supplier getById(int id) {
         String SQL_SELECT = "Select * from suppliers where supplier_id=?";
@@ -27,7 +21,6 @@ public class SupplierDao extends AbstractDao<Supplier>{
         }
         return null;
     }
-
     @Override
     public List<Supplier> getAll() {
         List<Supplier> suppliers = new ArrayList<>();
@@ -44,8 +37,6 @@ public class SupplierDao extends AbstractDao<Supplier>{
         }
         return null;
     }
-
-
     @Override
     public void create(Supplier supplier) {
         String SQL_INSERT = "Insert into suppliers (supplier_id, supplier_name,) values(?,?)";
@@ -57,7 +48,6 @@ public class SupplierDao extends AbstractDao<Supplier>{
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(Supplier supplier) {
         String SQL_UPDATE = "Update suppliers set supplier_name=? where supplier_id=?";
@@ -69,5 +59,4 @@ public class SupplierDao extends AbstractDao<Supplier>{
             e.printStackTrace();
         }
     }
-
 }

@@ -1,13 +1,9 @@
 package Dao;
 import Entities.Customer;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 public class CustomerDao extends AbstractDao<Customer>{
-
-
     @Override
     public Customer getById(int id) {
         String SQL_SELECT = "Select * from customers where customer_id=?";
@@ -24,7 +20,6 @@ public class CustomerDao extends AbstractDao<Customer>{
         }
         return null;
     }
-
     @Override
     public List<Customer> getAll() {
         List<Customer> customers = new ArrayList<>();
@@ -42,7 +37,6 @@ public class CustomerDao extends AbstractDao<Customer>{
         }
         return customers;
     }
-
     @Override
     public void create(Customer customer) {
         String SQL_INSERT = "Insert into customers(customer_id,first_name,last_name,email,address_Id) values(?,?,?,?,?)";
@@ -57,7 +51,6 @@ public class CustomerDao extends AbstractDao<Customer>{
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(Customer customer) {
         String SQL_UPDATE="Update customers set first_name=?,last_name=?,email=? where customer_id=?";
@@ -71,6 +64,4 @@ public class CustomerDao extends AbstractDao<Customer>{
             e.printStackTrace();
         }
     }
-
-
 }

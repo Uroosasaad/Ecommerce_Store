@@ -1,21 +1,16 @@
 package Dao;
-
 import connection.DBCPDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 public abstract class AbstractDao<T> implements DAOInterface<T> {
-
     public AbstractDao() {
     }
-
     protected PreparedStatement executePrepareStatement(String sql) throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         return con.prepareStatement(sql);
     }
-
     protected void closeConnection(Connection conn) {
         if (conn != null) {
             try {
@@ -25,7 +20,6 @@ public abstract class AbstractDao<T> implements DAOInterface<T> {
             }
         }
     }
-
     protected void closeStatement(PreparedStatement stmt) {
         if (stmt != null) {
             try {
@@ -35,7 +29,6 @@ public abstract class AbstractDao<T> implements DAOInterface<T> {
             }
         }
     }
-
     protected void closeResultSet(ResultSet rs) {
         if (rs != null) {
             try {
@@ -45,5 +38,4 @@ public abstract class AbstractDao<T> implements DAOInterface<T> {
             }
         }
     }
-
 }

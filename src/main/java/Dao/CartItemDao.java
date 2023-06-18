@@ -1,15 +1,11 @@
 package Dao;
-
 import Entities.CartItem;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class CartItemDao extends AbstractDao<CartItem> {
-
     @Override
     public CartItem getById(int id) {
         String SQL_SELECT = "Select * from cart_items where cart_item_id=?";
@@ -26,7 +22,6 @@ public class CartItemDao extends AbstractDao<CartItem> {
         }
         return null;
     }
-
     @Override
     public List<CartItem> getAll() {
         List<CartItem> cartItems = new ArrayList<>();
@@ -44,7 +39,6 @@ public class CartItemDao extends AbstractDao<CartItem> {
         }
         return null;
     }
-
     @Override
     public void create(CartItem cartItem) {
         String SQL_INSERT = "Insert into cart_items (cart_item_id, cart_id, product_id, quantity) values(?,?,?,?)";
@@ -58,7 +52,6 @@ public class CartItemDao extends AbstractDao<CartItem> {
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(CartItem cartItem) {
         String SQL_UPDATE="Update cart_items set cart_id=?,product_id=?, quantity=? where cart_item_id=?";
@@ -72,5 +65,4 @@ public class CartItemDao extends AbstractDao<CartItem> {
             e.printStackTrace();
         }
     }
-
 }

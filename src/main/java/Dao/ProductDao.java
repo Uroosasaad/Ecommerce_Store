@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDao extends AbstractDao<Product>{
-
     @Override
     public Product getById(int id) {
         String SQL_SELECT = "Select * from products where product_id=?";
@@ -27,7 +26,6 @@ public class ProductDao extends AbstractDao<Product>{
         }
         return null;
     }
-
     @Override
     public List<Product> getAll() {
         List<Product> products = new ArrayList<>();
@@ -45,7 +43,6 @@ public class ProductDao extends AbstractDao<Product>{
         }
         return null;
     }
-
     @Override
     public void create(Product product) {
         String SQL_INSERT = "Insert into products (product_id, product_name, product_price, category_id) values(?,?,?,?)";
@@ -59,7 +56,6 @@ public class ProductDao extends AbstractDao<Product>{
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(Product product) {
         String SQL_UPDATE="Update products set product_name=?,product_price=?, category_id=? where product_id=?";

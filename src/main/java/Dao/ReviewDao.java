@@ -1,16 +1,12 @@
 package Dao;
-
 import Entities.Product;
 import Entities.Review;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class ReviewDao extends AbstractDao<Review> implements DAODelete<Review> {
-
     @Override
     public Review getById(int id) {
         String SQL_SELECT = "Select * from reviews where review_id=?";
@@ -45,7 +41,6 @@ public class ReviewDao extends AbstractDao<Review> implements DAODelete<Review> 
         }
         return null;
     }
-
     @Override
     public void create(Review review) {
         String SQL_INSERT = "Insert into reviews (review_id, customer_id, product_id, rating, Comment) values(?,?,?,?,?)";
@@ -60,7 +55,6 @@ public class ReviewDao extends AbstractDao<Review> implements DAODelete<Review> 
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(Review review) {
         String SQL_UPDATE="Update reviews set customer_id=?,product_id=?, rating=?, comment=? where review_id=?";
@@ -75,7 +69,6 @@ public class ReviewDao extends AbstractDao<Review> implements DAODelete<Review> 
             e.printStackTrace();
         }
     }
-
     @Override
     public void delete(Review review) {
         String SQL_DELETE="Delete from reviews where review_id=?";

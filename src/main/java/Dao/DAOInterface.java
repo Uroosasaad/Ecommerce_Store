@@ -6,6 +6,4 @@ public interface DAOInterface<T> {
     List<T> getAll();
     void create(T t);
     void update(T t);
-
-
 }

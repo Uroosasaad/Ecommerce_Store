@@ -1,14 +1,10 @@
 package Dao;
-
 import Entities.Address;
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class AddressDao extends AbstractDao<Address> implements DAODelete<Address> {
     @Override
     public Address getById(int id) {
@@ -26,12 +22,10 @@ public class AddressDao extends AbstractDao<Address> implements DAODelete<Addres
         }
         return null;
     }
-
     @Override
     public List<Address> getAll() {
         List<Address> addresses = new ArrayList<>();
         String SQL_SELECT_ALL = "Select * from addresses";
-
         ResultSet rs = null;
         try (PreparedStatement ps = this.executePrepareStatement(SQL_SELECT_ALL))  {
             rs = ps.executeQuery();
@@ -46,7 +40,6 @@ public class AddressDao extends AbstractDao<Address> implements DAODelete<Addres
 
         return addresses;
     }
-
     @Override
     public void create(Address address) {
         String SQL_INSERT = "Insert into addresses(street,city,state,zip_code) values(?,?,?,?)";
@@ -56,12 +49,10 @@ public class AddressDao extends AbstractDao<Address> implements DAODelete<Addres
             ps.setString(3, address.getState());
             ps.setLong(4, address.getZipCode());
             ps.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(Address address) {
         String SQL_UPDATE = "Update addresses set street,city=?,state=?,zip_code=? where address_id=?";
@@ -76,7 +67,6 @@ public class AddressDao extends AbstractDao<Address> implements DAODelete<Addres
             e.printStackTrace();
         }
     }
-
     @Override
     public void delete(Address address) {
         String SQL_DELETE = "Delete from addresses where address_id=?";

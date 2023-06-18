@@ -1,15 +1,11 @@
 package Dao;
-
 import Entities.Category;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class CategoryDao extends AbstractDao<Category> {
-
     @Override
     public Category getById(int id) {
         String SQL_SELECT = "Select * from categories where category_id=?";
@@ -18,14 +14,12 @@ public class CategoryDao extends AbstractDao<Category> {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 return new Category(rs.getLong("category_id"), rs.getString("category_name"));
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-
     @Override
     public List<Category> getAll() {
         List<Category> categories = new ArrayList<>();
@@ -35,24 +29,20 @@ public class CategoryDao extends AbstractDao<Category> {
             while(rs.next()){
                 categories.add(new Category(rs.getLong("category_id"), rs.getString("category_name")));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return categories;
     }
-
     @Override
     public void create(Category category) {
         String SQL_INSERT = "Insert into categories (category_id, customer_name,) values(?,?)";
         try (PreparedStatement ps = this.executePrepareStatement(SQL_INSERT)) {
-
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(Category category) {
         String SQL_UPDATE = "Update categories set category_name=? where category_id=?";
@@ -64,6 +54,4 @@ public class CategoryDao extends AbstractDao<Category> {
             e.printStackTrace();
         }
     }
-
-
 }

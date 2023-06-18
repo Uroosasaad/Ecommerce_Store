@@ -1,16 +1,11 @@
 package Dao;
-
-
 import Entities.Payment;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class PaymentDao extends AbstractDao<Payment> {
-
     @Override
     public Payment getById(int id) {
         String SQL_SELECT = "Select * from payments where payment_id=?";
@@ -27,7 +22,6 @@ public class PaymentDao extends AbstractDao<Payment> {
         }
         return null;
     }
-
     @Override
     public List<Payment> getAll() {
         List<Payment> payments = new ArrayList<>();
@@ -43,11 +37,8 @@ public class PaymentDao extends AbstractDao<Payment> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
-
-
     @Override
     public void create(Payment payment) {
         String SQL_INSERT = "Insert into payments (payment_id, order_id, payment_Date, payment_Amount) values(?,?,?,?)";
@@ -61,7 +52,6 @@ public class PaymentDao extends AbstractDao<Payment> {
             e.printStackTrace();
         }
     }
-
     @Override
     public void update(Payment payment) {
         String SQL_UPDATE = "Update payments set  order_id=?, payment_Date=?, payment_Amount=? where payment_id =?";
@@ -75,5 +65,4 @@ public class PaymentDao extends AbstractDao<Payment> {
             e.printStackTrace();
         }
     }
-
 }
