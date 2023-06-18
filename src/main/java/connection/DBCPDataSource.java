@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 public class DBCPDataSource {
-    private static String JDBC_URL = "jdbc:mysql://localhost:3306/ecommerce_store";
-    private static String USERNAME = "tester";
-    private static String PASSWORD = "Pass123#d";
+    private static String JDBC_URL = "";
+    private static String USERNAME = "";
+    private static String PASSWORD = "";
     private static BasicDataSource ds = new BasicDataSource();
     static {
         ds.setUrl(JDBC_URL);

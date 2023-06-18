@@ -1,12 +1,10 @@
 package app;
-import Dao.CartDao;
-import Dao.CustomerDao;
-import Dao.OrderDao;
-import Entities.Cart;
-import Entities.Customer;
-import Entities.Order;
-import Services.ServiceImpl.CustomerService;
-import Services.ServiceImpl.OrderService;
+import mainEcommerce.Dao.CustomerDao;
+import mainEcommerce.Dao.OrderDao;
+import EcommerceStore.Entities.Customer;
+import EcommerceStore.Entities.Order;
+import EcommerceStore.Services.ServiceImpl.CustomerService;
+import EcommerceStore.Services.ServiceImpl.OrderService;
 import java.sql.Date;
 public class Main {
     public static void main(String[] args) {
