@@ -1,0 +1,22 @@
+<Suppliers>
+
+    <Supplier>
+        <supplier_id>1</supplier_id>
+        <supplier_name>Great Value</supplier_name>
+    </Supplier>
+
+    <Supplier>
+        <supplier_id>2</supplier_id>
+        <supplier_name>General Mills</supplier_name>
+    </Supplier>
+
+    <Supplier>
+        <supplier_id>3</supplier_id>
+        <supplier_name>Nature Valley</supplier_name>
+    </Supplier>
+
+    <Supplier>
+        <supplier_id>5</supplier_id>
+        <supplier_name>Pepsi</supplier_name>
+    </Supplier>
+</Suppliers>

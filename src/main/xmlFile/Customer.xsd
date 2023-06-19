@@ -1,0 +1,19 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Customers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Customer" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customer_id" type="xs:int"/>
+                            <xs:element name="first_name" type="xs:string"/>
+                            <xs:element name="last_name" type="xs:string"/>
+                            <xs:element name="email" type="xs:string"/>
+                            <xs:element name="address_id" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

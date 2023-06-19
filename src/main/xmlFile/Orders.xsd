@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Orders">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Order" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="order_id" type="xs:int"/>
+                            <xs:element name="customer_id" type="xs:int"/>
+                            <xs:element name="order_date" type="xs:date"/>
+                            <xs:element name="total_amount" type="xs:decimal"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
