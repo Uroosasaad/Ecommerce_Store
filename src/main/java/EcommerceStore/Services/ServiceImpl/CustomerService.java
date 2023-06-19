@@ -1,7 +1,7 @@
 package EcommerceStore.Services.ServiceImpl;
+import EcommerceStore.Dao.CustomerDao;
 import EcommerceStore.Entities.Customer;
 import EcommerceStore.Services.CRUService;
-import mainEcommerce.Dao.CustomerDao;
 
 import java.util.List;
 public class CustomerService implements CRUService<Customer> {

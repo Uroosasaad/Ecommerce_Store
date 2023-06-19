@@ -1,7 +1,7 @@
 package EcommerceStore.Services.ServiceImpl;
+import EcommerceStore.Dao.PaymentDao;
 import EcommerceStore.Entities.Payment;
 import EcommerceStore.Services.CRUService;
-import mainEcommerce.Dao.PaymentDao;
 
 import java.util.List;
 public class PaymentService implements CRUService<Payment> {

@@ -1,8 +1,8 @@
 package EcommerceStore.Services.ServiceImpl;
+import EcommerceStore.Dao.OrderDao;
 import EcommerceStore.Entities.Order;
 import EcommerceStore.Services.CRUService;
 import EcommerceStore.Services.DeleteService;
-import mainEcommerce.Dao.OrderDao;
 
 import java.util.List;
 public class OrderService implements CRUService<Order>, DeleteService<Order> {

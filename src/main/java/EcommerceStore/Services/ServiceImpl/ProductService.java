@@ -1,5 +1,5 @@
 package EcommerceStore.Services.ServiceImpl;
-import mainEcommerce.Dao.ProductDao;
+import EcommerceStore.Dao.ProductDao;
 import EcommerceStore.Entities.Product;
 import EcommerceStore.Services.CRUService;
 import EcommerceStore.Services.DeleteService;

@@ -9,20 +9,29 @@ public class DBCPDataSource {
     private static String JDBC_URL = "";
     private static String USERNAME = "";
     private static String PASSWORD = "";
+    public static String getJdbcUrl() { return JDBC_URL; }
+    public static void setJdbcUrl(String jdbcUrl) {
+        JDBC_URL = jdbcUrl;
+    }
+    public static String getUSERNAME() { return USERNAME; }
+    public static void setUSERNAME(String USERNAME) {
+        DBCPDataSource.USERNAME = USERNAME;
+    }
+    public static String getPASSWORD() {
+        return PASSWORD;
+    }
+    public static void setPASSWORD(String PASSWORD) {
+        DBCPDataSource.PASSWORD = PASSWORD;
+    }
     private static BasicDataSource ds = new BasicDataSource();
     static {
-        ds.setUrl(JDBC_URL);
-        ds.setUsername(USERNAME);
-        ds.setPassword(PASSWORD);
-        ds.setMinIdle(5);
-        ds.setMaxIdle(10);
-        ds.setMaxOpenPreparedStatements(100);
+        loadSettings();
+        ds.setUrl(getJdbcUrl());
+        ds.setUsername(getUSERNAME());
+        ds.setPassword(getPASSWORD());
     }
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
-    }
-    private DBCPDataSource(){
-        loadSettings();
     }
     public static void loadSettings() {
         Properties prop = new Properties();
@@ -33,8 +42,8 @@ public class DBCPDataSource {
             e.printStackTrace();
             System.exit(1);
         }
-        DBCPDataSource.USERNAME = prop.getProperty("app.username");
-        DBCPDataSource.PASSWORD = prop.getProperty("app.password");
-        DBCPDataSource.JDBC_URL = prop.getProperty("app.jdbcMySQLURL") + prop.getProperty("app.jdbcMySQLDbName");
+        setUSERNAME(prop.getProperty("app.username"));
+        setPASSWORD(prop.getProperty("app.password"));
+        setJdbcUrl(prop.getProperty("app.jdbcMySQLURL"));
     }
 }

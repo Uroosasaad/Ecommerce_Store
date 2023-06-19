@@ -1,5 +1,5 @@
 package EcommerceStore.Services.ServiceImpl;
-import mainEcommerce.Dao.SupplierDao;
+import EcommerceStore.Dao.SupplierDao;
 import EcommerceStore.Entities.Supplier;
 import EcommerceStore.Services.CRUService;
 import java.util.List;
