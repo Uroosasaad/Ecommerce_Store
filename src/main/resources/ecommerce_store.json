@@ -3,14 +3,14 @@
     "addresses": {
       "address": [
         {
-          "@id": "1",
+          "id": "1",
           "street": "gull",
           "city": "plano",
           "state": "TX",
           "zip_code": 75023
         },
         {
-          "@id": "2",
+          "id": "2",
           "street": "firm",
           "city": "mckinney",
           "state": "TX",

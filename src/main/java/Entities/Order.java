@@ -1,7 +1,10 @@
 package Entities;
 
+import JacksonService.LocalDateDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.sql.Date;
 
 public class Order  extends BaseEntity {
@@ -13,6 +16,7 @@ public class Order  extends BaseEntity {
     private byte customerId;
 
     @JsonProperty("order_date")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date orderDate;
 

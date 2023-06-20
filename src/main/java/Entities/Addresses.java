@@ -5,18 +5,18 @@ import java.util.List;
 
 
 public class Addresses {
-    @JsonProperty("address")
+    @JsonProperty("addresses")
     private List<Address> addressList;
 
-//    public Addresses(List<Address> addressList) {
-//        this.addressList = addressList;
-//    }
+    public Addresses(List<Address> addressList) {
+        this.addressList = addressList;
+    }
 
-//    public List<Address> getAddressList() {
-//        return addressList;
-//    }
+    public List<Address> getAddressList() {
+        return addressList;
+    }
 
-//    public void setAddressList(List<Address> addressList) {
-//        this.addressList = addressList;
-//    }
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
+    }
 }

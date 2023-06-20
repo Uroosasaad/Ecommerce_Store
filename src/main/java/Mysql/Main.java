@@ -1,51 +1,47 @@
 package Mysql;
 
-
 import Entities.*;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
-import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.SQLOutput;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
-
         try {
-            File jsonFile = new File("src\\main\\resources\\ecommerce_store1.json"); // Replace "data.json" with your actual JSON file path
-
+            File jsonFile = new File("src\\main\\resources\\ecommerce_store.json"); // Replace "data.json" with your actual JSON file path
             ObjectMapper mapper = new ObjectMapper();
+            Ecommerce_Store ecommerceStore = new Ecommerce_Store();
+            JsonNode mainParentNode = mapper.readTree(jsonFile);
+            if (mainParentNode != null) {
+                JsonNode categoryNode = mainParentNode.findPath("addresses");
+                if (categoryNode != null) {
+                    List<Address> addressList = new ArrayList<Address>();
+                    JsonNode addressNodeList = categoryNode.findPath("address");
+                    if (addressNodeList != null && addressNodeList.size() > 0) {
+                        for (JsonNode addressNode : addressNodeList) {
+                            Address address = mapper.treeToValue(addressNode, Address.class);
+                            addressList.add(address);
+                            logger.info(address.toString());
+                        }
+                        ecommerceStore.setAddresses( addressList);
+                    }
+                }
+            }
 
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-            mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
-//            String exampleRequest = FileUtils.readFileToString(new File("src\\main\\resources\\ecommerce_store.json"), StandardCharsets.UTF_8);
-            String exampleRequest = new String(Files.readAllBytes(Paths.get("src\\main\\resources\\ecommerce_store.json")));
-
-             Ecommerce_Store ecommerceStore = mapper.readValue(exampleRequest, Ecommerce_Store.class);
-
-            Addresses addresses = ecommerceStore.getAddresses();
-            Categories categories = ecommerceStore.getCategories();
-            Suppliers suppliers = ecommerceStore.getSuppliers();
-            Orders orders = ecommerceStore.getOrders();
-            Customers customers = ecommerceStore.getCustomers();
-
-//            System.out.println("Address: ");
-//            List<Address> addresses = ecommerceStore.getAddresses().getAddressList();
-//            for (Address address : addresses.getAddressList()) {
-//                System.out.println("Addresses:");
-//             //   System.out.println(addresses.toString());
-//            }
-
-
-    } catch (Exception e) {
-        e.printStackTrace();
+            System.out.println(ecommerceStore.toString());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
