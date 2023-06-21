@@ -1,6 +1,12 @@
 package Entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="Category")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Category  extends BaseEntity{
 
     @JsonProperty("id")
