@@ -1,0 +1,80 @@
+{
+  "ecommerce_store": {
+    "addresses": {
+      "address": [
+        {
+          "id": "1",
+          "street": "gull",
+          "city": "plano",
+          "state": "TX",
+          "zip_code": 75023
+        },
+        {
+          "id": "2",
+          "street": "firm",
+          "city": "mckinney",
+          "state": "TX",
+          "zip_code": 75407
+        }
+      ]
+    },
+    "categories": {
+      "category": [
+        {
+          "id": "1",
+          "category_name": "Foods"
+        },
+        {
+          "id": "2",
+          "category_name": "Dairy"
+        }
+      ]
+    },
+    "suppliers": {
+      "supplier": [
+        {
+          "id": "1",
+          "supplier_name": "Great Value"
+        },
+        {
+          "id": "2",
+          "supplier_name": "General Mills"
+        }
+      ]
+    },
+    "orders": {
+      "order": [
+        {
+          "id": "1",
+          "customer_id": 1,
+          "order_date": "2023-03-01",
+          "total_amount": 5
+        },
+        {
+          "id": "2",
+          "customer_id": 2,
+          "order_date": "2022-04-06",
+          "total_amount": 3
+        }
+      ]
+    },
+    "customers": {
+      "customer": [
+        {
+          "id": "1",
+          "first_name": "Tim",
+          "last_name": "harry",
+          "email": "t.harry@gmail.com",
+          "address_id": 2
+        },
+        {
+          "id": "2",
+          "first_name": "John",
+          "last_name": "Bradshaw",
+          "email": "johnb@gmail.com",
+          "address_id": 4
+        }
+      ]
+    }
+  }
+}
