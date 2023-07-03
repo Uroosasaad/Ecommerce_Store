@@ -1,7 +1,7 @@
 package Entities;
 
-
 import jakarta.xml.bind.annotation.*;
+
 
 @XmlRootElement(name="category")
 @XmlAccessorType(XmlAccessType.FIELD)
